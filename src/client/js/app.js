@@ -1,11 +1,8 @@
-/* Global Variables */
-const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 
-// Personal API Key for OpenWeatherMap API
-
-const api = ",us&appid=aa52f9066af34bc72a9f7c9c305d64a1";
 
 // api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={your api key}
+
+const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 
 let zip = document.getElementById("zip");
 let text = document.getElementById("feelings");
