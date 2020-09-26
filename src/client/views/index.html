@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Weather Journal</title>
+<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="holder headline">
+        <h1 class="headline-heading"> Weather Journal App </h1>
+    </div>
+    <div class="holder zip">
+      <div class="zip-left">
+        <label for="zip">
+          <h1 class="heading-zip">Zipcode: </h1>
+        </label>
+      </div>
+      <div class="zip-right">
+        <input type="text" id="zip" placeholder="enter zip code here">
+      </div>
+    </div>
+    
+    <div class="holder feel">
+      <div class="feel-left">
+        <label for="feelings">
+          <h1 class="heading-feel">How are you feeling today?</h1>
+        </label>
+      </div>
+      <div class="feel-right">
+        <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="6" cols="100"></textarea>
+      </div>
+    </div>  
+
+    <button class="generate" id="generate" type="submit">
+      <h1>Generate</h1>
+    </button>
+    <div class="title-entry">
+      <h1 class="heading-entry">Most Recent Entry</h1>
+    </div>
+    <div class="holder entry" id="entryList"></div>
+  </div>
+
+  <header>
+    <div class="">
+        Logo
+    </div>
+    <div class="">
+        navigation
+    </div>
+</header>
+
+<main>
+    <section>
+        <form class="" onsubmit="return Client.handleSubmit(event)">
+            <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
+            <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+        </form>
+    <section>
+
+    <section>
+        <strong>Form Results:</strong>
+        <div id="results"></div>
+    </section>
+</main>
+
+
+</body>
+</html>
