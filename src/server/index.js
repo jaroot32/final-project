@@ -1,5 +1,12 @@
 // Setup empty JS object to act as endpoint for all routes
-projectList = []
+// Cors for cross origin allowance
+const cors = require('cors');
+const dotenv = require('dotenv');
+var path = require('path');
+
+const PORT = process.env.PORT || 5000;
+dotenv.config();
+
 
 // Express to run server and routes
 const express = require('express');
@@ -7,21 +14,20 @@ const express = require('express');
 // Start up an instance of app
 const app = express();
 
+// Initialize the main project folder - use dist
+app.use(express.static('dist'));
+
 /* Middleware*/
 var bodyParser = require('body-parser')
 
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Cors for cross origin allowance
-const cors = require('cors');
+
 app.use(cors());
 
-// Initialize the main project folder
-app.use(express.static('website'));
-
-
+let projectList = []
 
 // TODO-ROUTES!
 
@@ -38,7 +44,13 @@ function addProject(req, res) {
     console.log(projectList)
 }
 
+app.get('/', function (req, res) {
+    // res.sendFile('dist/index.html')
+    res.sendFile(path.resolve('src/client/views/index.html'))
+});
+
+
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
-})
+app.listen(PORT, function () {
+    console.log('Example app listening on port 5000!')
+});

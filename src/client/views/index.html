@@ -2,23 +2,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Weather Journal</title>
+<title>Travel Journal</title>
 <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div id="app">
-    <div class="holder headline">
-        <h1 class="headline-heading"> Weather Journal App </h1>
+<body id="app">
+  <header>
+    <div class="">
+        Logo
     </div>
-    <div class="holder zip">
-      <div class="zip-left">
-        <label for="zip">
-          <h1 class="heading-zip">Zipcode: </h1>
+    <div class="">
+        navigation
+    </div>
+</header>
+  <div>
+    <div class="holder headline">
+        <h1 class="headline-heading"> Travel App </h1>
+        <!-- Changed zip to city Sunday - 1:29AM -->
+    </div>
+    <div class="holder city">
+      <div class="city-left">
+        <label for="city">
+          <h1 class="heading-city">City: </h1>
         </label>
       </div>
-      <div class="zip-right">
-        <input type="text" id="zip" placeholder="enter zip code here">
+      <div class="city-right">
+        <input type="text" id="city" placeholder="enter city">
       </div>
     </div>
     
@@ -29,7 +37,7 @@
         </label>
       </div>
       <div class="feel-right">
-        <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="6" cols="100"></textarea>
+        <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="6" cols="45"></textarea>
       </div>
     </div>  
 
@@ -41,15 +49,6 @@
     </div>
     <div class="holder entry" id="entryList"></div>
   </div>
-
-  <header>
-    <div class="">
-        Logo
-    </div>
-    <div class="">
-        navigation
-    </div>
-</header>
 
 <main>
     <section>
@@ -67,4 +66,13 @@
 
 
 </body>
+<script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+      });
+  }
+ </script>
 </html>

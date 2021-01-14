@@ -1,3 +1,5 @@
+// replaced zip with city
+
 * {
 
     box-sizing: border-box;
@@ -15,25 +17,25 @@ body {
 #app {
 
     display: grid;
-    grid-template-columns: repeat(8, 12.5%);
+    grid-template-columns: repeat(1, 100%);
      grid-auto-rows: minmax(100px, auto);
     width: 100vw;
     height: auto;
-    background: #f23557;
+    background: #e6b0ba;
     color: #f0d43a;
-    justify-items: center;
+    justify-items: left;
     /* grid-gap: 1vh; */
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
 
-.zip {
+.city {
 
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 1;
     grid-row: span 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     max-height: fit-content;
     height: auto;
     margin: 1rem auto 1rem auto;
@@ -41,7 +43,7 @@ body {
 
 }
 
-.zip-left {
+.city-left {
     margin-right: 1vw;
 }
 
@@ -51,7 +53,7 @@ body {
     flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
-    grid-column: 1 / 9;
+    grid-column: 1 / 4;
     flex-wrap: wrap-reverse;
     width: 100%;
     background: rgba(59, 74, 107, .4);
@@ -73,13 +75,13 @@ body {
 .headline {
 
     grid-row: span 1;
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 2;
     display: flex;
     align-items: center;
 
 }
 
-.heading-zip {
+.heading-city {
 
     font-size: 4vw;
 
@@ -99,12 +101,12 @@ body {
 .feel {
 
     grid-column: 1 / span 8;
-    grid-row: span 3;
+    grid-row: span 2;
 
 }
 
 .feel-left {
-    text-align: center;
+    // text-align: center;
 }
 
 .heading-feel {
@@ -113,10 +115,10 @@ body {
 
 .title-entry {
 
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 3;
     grid-row: span 1;
     width: 100%;
-    text-align: center;
+    // text-align: center;
     align-self: center;
 
 }
@@ -138,6 +140,7 @@ input {
     font-size: 4vw;
     font-family: 'Oswald', sans-serif;
     border: none;
+    width: 169px;
 }
 
 button {

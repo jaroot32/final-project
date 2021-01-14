@@ -1,164 +1,71 @@
+// changed zip to city
+function app() {
+    const geoUrl = 'api.geonames.org/search?name=';
+    const key = '&username=jaroot1212'
 
+    let city = document.getElementById("city");
 
-// api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={your api key}
+    let text = document.getElementById("feelings");
 
-const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?zip=';
+    const travelDetail = {};
+    console.log(travelDetail)
 
-let zip = document.getElementById("zip");
-let text = document.getElementById("feelings");
+    // Create a new date instance dynamically with JS
+    let d = new Date();
+    let date = d.getMonth() + 1;
+    let newDate = date + '.' + d.getDate() + '.' + d.getFullYear();
 
-const weatherMood = {};
+    // Event listener to add function to existing HTML DOM element
+    let generate = document.getElementById("generate");
 
-// Create a new date instance dynamically with JS
-let d = new Date();
-let date = d.getMonth() + 1;
-let newDate = date + '.' + d.getDate() + '.' + d.getFullYear();
+    const generator = (event) => {
+        
+        let textInput = text.value
 
-// Event listener to add function to existing HTML DOM element
-let generate = document.getElementById("generate");
+        let cityInput = city.value;
+        console.log(cityInput)
 
-const generator = (event) => {
-    
-    let textInput = text.value
+        let call = geoUrl + cityInput + key;
+        console.log(call)
 
-    let zipInput = zip.value;
+        travelDetail["city"] = cityInput;
 
-    let call = apiUrl + zipInput + api;
+        travelDetail["date"] = newDate;
 
-    weatherMood["zipcode"] = zipInput;
+        travelDetail["text"] = textInput;
 
-    weatherMood["date"] = newDate;
+        city.value = "";
+        text.value = "";
 
-    weatherMood["text"] = textInput;
+        const myHeaders = new Headers();
 
-    zip.value = "";
-    text.value = "";
-
-    const myHeaders = new Headers();
-
-    const myRequest = new Request(call, {
-        method: 'GET',
-        headers: myHeaders,
-        mode: 'cors',
-        cache: 'default',
-    });
-
-    /* Function to GET Web API Data*/
-
-    fetch(myRequest)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            weatherMood["weather"] = data;
-        }).then(function () {
-            poster('/add', weatherMood);
-        }).then(function () {
-            getter('/all')
+        const myRequest = new Request(call, {
+            method: 'GET',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default',
         });
-    console.log(weatherMood);
+
+        /* Function to GET Web API Data*/
+
+        fetch(myRequest)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                travelDetail["details"] = data;
+            }).then(function () {
+                Client.poster('/add', travelDetail);
+            }).then(function () {
+                Client.getter('/all')
+            });
+        console.log(travelDetail);
+    }
+
+    /* Function called by event listener */
+
+    generate.addEventListener('click', generator);
+
+
 }
 
-/* Function called by event listener */
-
-generate.addEventListener('click', generator);
-
-/* Function to POST data */
-
-const poster = async (url = '', data = {}) => {
-
-    const response = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-
-            'Content-Type': 'application/json',
-
-        },
-        body: JSON.stringify(data),
-    });
-
-    try {
-
-        const newData = await response.json();
-
-        return newData;
-
-    } catch (error) {
-
-        console.log('error', error);
-
-    }
-};
-
-/* Function to GET Project Data */
-
-const getter = async (url = '') => {
-
-    const request = await fetch(url, {
-        method: 'GET',
-        credentials: 'same-origin',
-        headers: {
-
-            'Content-Type': 'application/json',
-
-        }
-    });
-
-    try {
-
-        const newList = await request.json();
-        
-        let entries = (arr) => {
-            let html_entries = [];
-                for (let i = 0; i < arr.length; i++) {
-                    let div = document.createElement("div");
-                    div.classList.add( "recent-entry" );
-                    div.innerHTML = `<div id="entryHolder">
-                    <h3>Time</h3>
-                    <div id="time">${arr[i].date}</div>
-                    <h3>Temperature</h3>
-                    <div id="temp">${arr[i].weather.main.temp}</div>
-                    <h3>Feeling</h3>
-                    <div id="content">${arr[i].text}</div>
-                </div>`
-                    
-                html_entries.push(div)
-                }
-            return html_entries;
-        }
-        
-       
-        let clearEntries = () => {
-
-            let list_to_clear = document.getElementById("entryList");
-
-            while (list_to_clear.firstChild) {
-                list_to_clear.removeChild(list_to_clear.firstChild);
-            }
-
-        }
-
-        let displayEntries = (arr) => {
-
-            let list = document.getElementById("entryList");
-
-            clearEntries();
-            
-            for (let i = 0; i < arr.length; i++) {
-                list.append(arr[i])
-            }
-
-        }
-        
-        let newEntries = entries(newList)
-        displayEntries(newEntries);
-
-
-    } catch (error) {
-
-        console.log('error', error);
-
-    }
-        
-};
-
+export { app }
